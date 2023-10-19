@@ -63,26 +63,30 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-void main() => runApp(XylophoneApp());
+void main() =>
+runApp(
+    XylophoneApp()
+);
+
 
  class XylophoneApp extends StatelessWidget {
    void playSound(int soundNumber) {
      final player = AudioPlayer();
       player.play(AssetSource('note$soundNumber.wav'));
    }
-
-  Expanded buildKey(@required Color colName, @required int soundNumber) {
-    return Expanded(
-      child: TextButton(
-        onPressed: () {
-          playSound(soundNumber);
-        },
-        style: ButtoStyle(backgroundColor: MaterialStatePropertyAll(Colors.red),
-        ),
-        child: Text(''), // Empty text widget
-      ),
-    );
-  }
+   Expanded buildKey({required Color colName, required int soundNumber}) {
+     return Expanded(
+       child: TextButton(
+         style: TextButton.styleFrom(
+           backgroundColor: colName,
+         ),
+         onPressed: () {
+           playSound(soundNumber);
+         },
+         child: const Text(''),
+       ),
+     );
+   }
 
   @override
   Widget build(BuildContext context) {
@@ -94,11 +98,13 @@ void main() => runApp(XylophoneApp());
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               buildKey(colName: Colors.red, soundNumber: 1),
-              buildKey(color: Colors.orange, soundNumber: 2),
-              buildKey(color: Colors.yellow, soundNumber: 3),
-              buildKey(color: Colors.green, soundNumber: 4),
-              buildKey(color: Colors.blue, soundNumber: 5),
-              buildKey(color: Colors.purple, soundNumber: 6),
+              buildKey(colName: Colors.orange, soundNumber: 2),
+              buildKey(colName: Colors.yellow, soundNumber: 3),
+              buildKey(colName: Colors.green, soundNumber: 4),
+              buildKey(colName: Colors.teal, soundNumber: 5),
+              buildKey(colName: Colors.blue, soundNumber: 6),
+              buildKey(colName: Colors.purple, soundNumber: 7),
+
             ],
           ),
         ),
